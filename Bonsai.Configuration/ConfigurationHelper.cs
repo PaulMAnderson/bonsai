@@ -10,7 +10,6 @@ namespace Bonsai.Configuration
     public static class ConfigurationHelper
     {
         const string PathEnvironmentVariable = "PATH";
-        const string DefaultProbingPath = "Packages";
         const string DefaultConfigurationFileName = "Bonsai.config";
 
         static string GetEnvironmentPlatform()
@@ -37,7 +36,7 @@ namespace Bonsai.Configuration
         public static string GetConfigurationRoot(PackageConfiguration configuration = null)
         {
             return configuration == null || string.IsNullOrWhiteSpace(configuration.ConfigurationFile)
-                ? Path.GetDirectoryName(AppDomain.CurrentDomain.SetupInformation.ConfigurationFile)
+                ? AppDomain.CurrentDomain.BaseDirectory
                 : Path.GetDirectoryName(configuration.ConfigurationFile);
         }
 
